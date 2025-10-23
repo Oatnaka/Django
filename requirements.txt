@@ -3,5 +3,6 @@ gunicorn
 line-bot-sdk
 Pillow
 python-decouple
-widget_tweaks
+
+
 
