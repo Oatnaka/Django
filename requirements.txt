@@ -1,3 +1,4 @@
+python-3.12.3
 Django
 gunicorn
 line-bot-sdk
@@ -6,4 +7,5 @@ python-decouple
 psycopg2-binary
 dj-database-url
 whitenoise
+
 
