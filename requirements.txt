@@ -3,6 +3,5 @@ gunicorn
 line-bot-sdk
 Pillow
 python-decouple
-psycopg2-binary
-dj-database-url
-whitenoise
+widget_tweaks
+
