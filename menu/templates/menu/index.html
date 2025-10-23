@@ -1,0 +1,78 @@
+{% extends "menu/base.html" %} 
+{% block title %}หน้าแรก{% endblock %}
+
+{% block content %}
+    
+    <section id="home" class="relative h-screen overflow-hidden">
+        <div class="absolute inset-0">
+            <img src="https://images.unsplash.com/photo-1667388969250-1c7220bf3f37?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHxyZXN0YXVyYW50JTIwaW50ZXJpb3J8ZW58MXx8fHwxNzYwNzg2NDg3fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" 
+                alt="Restaurant Interior" 
+                class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-black/60"></div> 
+        </div>
+        
+        <div class="relative h-full flex items-center justify-center">
+            <div class="text-center text-white px-4 animate-fadeIn">
+                <p class="text-xl font-light text-amber-300 mb-2 tracking-widest uppercase">Thai Cuisine Excellence</p>
+                <h1 class="text-6xl md:text-8xl font-extrabold mb-6 shadow-text">ยินดีต้อนรับสู่ร้านอาหารไทย</h1>
+                <p class="text-xl md:text-2xl mb-10 max-w-4xl mx-auto font-light">
+                    สัมผัสรสชาติอาหารไทยแท้ที่ปรุงด้วยใจ ในบรรยากาศอบอุ่นและหรูหรา พร้อมการบริการระดับพรีเมียม
+                </p>
+                <div class="flex gap-6 justify-center flex-wrap">
+                    <a href="{% url 'menu:menu' %}" class="bg-amber-600 hover:bg-amber-700 text-white px-8 py-4 rounded-xl text-lg font-bold transition duration-300 shadow-xl transform hover:scale-105">
+                        สำรวจเมนู
+                    </a>
+                    <a href="{% url 'menu:reservation' %}" class="bg-white/15 backdrop-blur-sm text-white border-2 border-white hover:bg-white/25 px-8 py-4 rounded-xl text-lg font-bold transition duration-300 shadow-xl transform hover:scale-105">
+                        จองโต๊ะ
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-24 bg-amber-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-lg font-semibold text-amber-600 mb-2 uppercase tracking-wider">เรื่องราวของเรา</h2>
+                <h3 class="text-4xl font-bold text-gray-800">เกี่ยวกับเรา</h3>
+                <p class="text-gray-600 max-w-3xl mx-auto mt-4 text-lg">
+                    ร้านอาหารไทยของเรามีประสบการณ์มากกว่า 20 ปี ในการให้บริการอาหารไทยต้นตำรับที่ได้รับการคัดสรรวัตถุดิบคุณภาพ
+                    ปรุงโดยเชฟที่มีความเชี่ยวชาญ เพื่อมอบรสชาติที่ดีที่สุดแก่คุณ
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <div class="text-center p-8 bg-white rounded-2xl shadow-xl border border-amber-100 transform hover:shadow-2xl hover:-translate-y-1 transition duration-300">
+                    <div class="w-16 h-16 bg-amber-600 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+                        <svg class="text-white w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-900 mb-2">เปิดทุกวัน</h4>
+                    <p class="text-gray-600 text-lg">10:00 - 22:00 น.</p>
+                </div>
+
+                <div class="text-center p-8 bg-white rounded-2xl shadow-xl border border-amber-100 transform hover:shadow-2xl hover:-translate-y-1 transition duration-300">
+                    <div class="w-16 h-16 bg-amber-600 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+                        <svg class="text-white w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.108c1.383 4.14 0.985 8.742-1.996 12.18C15.011 20.306 12.04 22 8.944 22H7.5c-2.485 0-4.5-2.015-4.5-4.5v-3C3 12.015 5.015 10 7.5 10H8m0 0l-1.5-1.5L9.5 6l4.5 4-1.5 1.5M17 12h-2"></path>
+                        </svg>
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-900 mb-2">คุณภาพพรีเมียม</h4>
+                    <p class="text-gray-600 text-lg">วัตถุดิบสดใหม่ทุกวัน</p>
+                </div>
+
+                <div class="text-center p-8 bg-white rounded-2xl shadow-xl border border-amber-100 transform hover:shadow-2xl hover:-translate-y-1 transition duration-300">
+                    <div class="w-16 h-16 bg-amber-600 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+                        <svg class="text-white w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                        </svg>
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-900 mb-2">ปรุงด้วยใจ</h4>
+                    <p class="text-gray-600 text-lg">ดูแลทุกรายละเอียด</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock content %}

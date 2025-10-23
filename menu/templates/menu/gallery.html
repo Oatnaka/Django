@@ -1,0 +1,66 @@
+{% extends "menu/base.html" %}
+{% load static %}
+
+{% block title %}แกลเลอรีภาพอาหาร{% endblock %}
+
+{% block content %}
+    
+    <section class="relative py-32 md:py-48 bg-gray-900 overflow-hidden">
+        <div class="absolute inset-0">
+            <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHxzZWFmb29kJTIwZGlzaGVzfGVufDB8MXx8fDE3NjA3ODY1MzZ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" 
+                alt="Thai Food Platter" 
+                class="w-full h-full object-cover opacity-30">
+        </div>
+        
+        <div class="absolute inset-0 bg-black/50"></div> <div class="relative max-w-7xl mx-auto px-4 text-center">
+            <h1 class="text-white text-5xl md:text-6xl font-extrabold mb-4 animate-fadeInUp">แกลเลอรีภาพอาหาร</h1>
+            <p class="text-xl md:text-2xl text-amber-300 max-w-3xl mx-auto font-light">
+                ชมภาพอาหารและบรรยากาศร้านของเราที่คัดสรรมาอย่างดี
+            </p>
+        </div>
+    </section>
+
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center mb-12">
+                <p class="text-lg font-semibold text-amber-600 mb-2 uppercase tracking-wider">Taste & Sight</p>
+                <h2 class="text-4xl font-bold text-gray-800">ภาพความประทับใจ</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                
+                {% for image in images %}
+                
+                <div class="group relative overflow-hidden rounded-xl shadow-2xl border-2 border-transparent hover:border-amber-400 transition duration-300 transform hover:scale-[1.02]">
+                    
+                    {% if image.image %}
+                    <img src="{{ image.image.url }}" 
+                        alt="{{ image.title }}" 
+                        class="w-full h-72 object-cover transition duration-500 group-hover:scale-110">
+                    {% else %}
+                    <div class="w-full h-72 bg-gray-200 rounded-md flex items-center justify-center text-gray-500">No Image</div>
+                    {% endif %}
+                    
+                    <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex items-end p-5 transition duration-500">
+                        <p class="text-white text-xl font-bold border-b-2 border-amber-400 pb-1">{{ image.title }}</p>
+                    </div>
+                </div>
+                
+                {% empty %}
+                <p class="text-gray-500 col-span-full text-center p-8 bg-white rounded-lg shadow-md">ยังไม่มีรูปภาพในแกลเลอรี โปรดเพิ่มรูปภาพผ่าน Django Admin</p>
+                
+                {% endfor %}
+
+            </div>
+            
+            <div class="text-center mt-16">
+                <a href="{% url 'menu:reservation' %}" class="bg-amber-600 hover:bg-amber-700 text-white px-10 py-4 rounded-xl text-lg font-bold transition duration-300 shadow-lg transform hover:scale-105">
+                    จองโต๊ะเลย!
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+{% endblock content %}

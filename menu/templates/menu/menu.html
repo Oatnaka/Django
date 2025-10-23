@@ -1,0 +1,75 @@
+{% extends "menu/base.html" %}
+{% load static %}
+
+{% block title %}เมนูอาหาร{% endblock %}
+
+{% block content %}
+    
+    <section class="relative py-32 md:py-48 bg-gray-900 overflow-hidden">
+        <div class="absolute inset-0">
+            <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpbmRpYW4lMjBmb29kfGVufDB8MXx8fDE3NjA3ODY1MzZ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" 
+                alt="Thai Food Platter" 
+                class="w-full h-full object-cover opacity-30">
+        </div>
+        
+        <div class="absolute inset-0 bg-black/50"></div> <div class="relative max-w-7xl mx-auto px-4 text-center">
+            <h1 class="text-white text-5xl md:text-6xl font-extrabold mb-4 animate-fadeInUp">เมนูอาหาร</h1>
+            <p class="text-xl md:text-2xl text-amber-300 max-w-3xl mx-auto font-light">
+                ค้นพบรสชาติไทยต้นตำรับ ทั้งอาหารจานหลัก อาหารทะเล และของหวาน
+            </p>
+        </div>
+    </section>
+
+    <section id="menu-items" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <p class="text-lg font-semibold text-amber-600 mb-2 uppercase tracking-wider">Our Selection</p>
+                <h2 class="text-4xl font-bold text-gray-800">เมนูแนะนำประจำร้าน</h2>
+            </div>
+            
+            {% for category in categories %}
+            
+            <div class="mb-16">
+                <h3 class="text-4xl font-extrabold text-amber-700 border-b-4 border-amber-300 pb-3 mb-10 inline-block">{{ category.name }}</h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    {% for item in category.items.all %} 
+                    
+                    <div class="flex items-start space-x-4 p-5 rounded-xl shadow-xl border border-gray-100 hover:shadow-2xl transition duration-300 bg-white group">
+                        
+                        {% if item.image %}
+                        <img src="{{ item.image.url }}" alt="{{ item.name }}" class="w-24 h-24 object-cover rounded-xl flex-shrink-0 border-2 border-amber-400 group-hover:border-amber-600 transition duration-300">
+                        {% else %}
+                        <div class="w-24 h-24 bg-gray-200 rounded-xl flex items-center justify-center text-xs text-gray-500 text-center p-1 flex-shrink-0 border-2 border-gray-300">No Image</div>
+                        {% endif %}
+
+                        <div class="flex-grow">
+                            <div class="flex justify-between items-start mb-1">
+                                <h4 class="text-xl font-bold text-gray-900 group-hover:text-amber-700 transition">{{ item.name }}</h4>
+                                <p class="text-xl font-extrabold text-amber-600 ml-4">{{ item.price }} ฿</p> 
+                            </div>
+                            <p class="text-sm text-gray-500 mt-1 leading-relaxed">{{ item.description }}</p>
+                        </div>
+                    </div>
+                    
+                    {% empty %}
+                    <p class="text-gray-500 col-span-full p-4 border-l-4 border-gray-300 bg-gray-50">ยังไม่มีรายการอาหารในหมวดหมู่ {{ category.name }}</p>
+
+                    {% endfor %}
+                    
+                </div>
+            </div>
+            
+            {% endfor %}
+            
+            <div class="text-center mt-20 p-10 bg-amber-50 rounded-2xl shadow-xl border border-amber-200">
+                <h3 class="text-3xl font-bold text-amber-800 mb-6">พร้อมสั่งอาหารแล้วใช่ไหม?</h3>
+                <a href="{% url 'menu:reservation' %}" class="bg-amber-600 hover:bg-amber-700 text-white px-10 py-4 rounded-xl text-lg font-bold transition duration-300 shadow-lg transform hover:scale-105">
+                    จองโต๊ะหรือสั่งกลับบ้าน
+                </a>
+            </div>
+        </div>
+    </section>
+
+{% endblock content %}

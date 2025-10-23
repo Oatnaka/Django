@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ร้านอาหารไทย - {% block title %}{% endblock %}</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    {% load static %}
+    <style>
+        html {
+            /* ทำให้การเลื่อนไปยัง anchor links (#id) เป็นไปอย่างนุ่มนวล */
+            scroll-behavior: smooth;
+        }
+        /* ซ่อนเมนูมือถือเริ่มต้น */
+        #mobile-menu {
+            display: none;
+        }
+    </style>
+
+</head>
+<body class="bg-gray-50 pt-16">
+    
+    <nav class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-md shadow-lg z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex-shrink-0">
+                    <a href="{% url 'menu:home' %}" class="text-3xl font-extrabold text-amber-700 hover:text-amber-600 transition duration-300">
+                        THAI FOOD
+                    </a>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="{% url 'menu:home' %}" class="text-gray-700 font-medium hover:text-amber-600 transition">หน้าแรก</a>
+                    <a href="{% url 'menu:home' %}#about" class="text-gray-700 font-medium hover:text-amber-600 transition">เกี่ยวกับเรา</a>
+                    <a href="{% url 'menu:menu' %}" class="text-gray-700 font-medium hover:text-amber-600 transition">เมนูอาหาร</a>
+                    <a href="{% url 'menu:table_status' %}" class="text-gray-700 font-medium hover:text-amber-600 transition">สถานะโต๊ะ</a>
+                    <a href="{% url 'menu:gallery' %}" class="text-gray-700 font-medium hover:text-amber-600 transition">แกลเลอรี</a>
+                    <a href="{% url 'menu:contact' %}" class="text-gray-700 font-medium hover:text-amber-600 transition">ติดต่อเรา</a>
+                    
+                    <a href="{% url 'menu:reservation' %}" class="bg-amber-600 hover:bg-amber-700 text-white font-bold px-5 py-2 rounded-xl transition shadow-md hover:shadow-lg transform hover:scale-105">
+                        จองโต๊ะ
+                    </a>
+                </div>
+                
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" type="button" class="text-gray-700 hover:text-amber-600 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500">
+                        <svg id="hamburger-icon" class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                        <svg id="close-icon" class="h-6 w-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div id="mobile-menu" class="mobile-menu md:hidden bg-white border-t">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="{% url 'menu:home' %}" class="block px-3 py-2 text-gray-700 hover:bg-amber-50 rounded-md font-medium">หน้าแรก</a>
+                <a href="{% url 'menu:home' %}#about" class="block px-3 py-2 text-gray-700 hover:bg-amber-50 rounded-md font-medium">เกี่ยวกับเรา</a>
+                <a href="{% url 'menu:menu' %}" class="block px-3 py-2 text-gray-700 hover:bg-amber-50 rounded-md font-medium">เมนูอาหาร</a>
+                <a href="{% url 'menu:table_status' %}" class="block px-3 py-2 text-gray-700 hover:bg-amber-50 rounded-md font-medium">สถานะโต๊ะ</a>
+                <a href="{% url 'menu:gallery' %}" class="block px-3 py-2 text-gray-700 hover:bg-amber-50 rounded-md font-medium">แกลเลอรี</a>
+                <a href="{% url 'menu:contact' %}" class="block px-3 py-2 text-gray-700 hover:bg-amber-50 rounded-md font-medium">ติดต่อเรา</a>
+                <div class="px-3 py-2 mt-4">
+                    <a href="{% url 'menu:reservation' %}" class="w-full bg-amber-600 hover:bg-amber-700 text-white px-4 py-3 rounded-xl transition block text-center font-bold">
+                        จองโต๊ะ
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main>
+        {% block content %}
+        {% endblock content %}
+    </main>
+
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div class="md:col-span-2">
+                    <h3 class="text-3xl font-extrabold text-amber-500 mb-4">THAI FOOD</h3>
+                    <p class="text-gray-400 text-lg">สัมผัสรสชาติไทยแท้ที่ปรุงด้วยใจ ในบรรยากาศอบอุ่น</p>
+                    <p class="text-gray-500 mt-4 text-sm">โทร: 02-123-4567 | เปิด: 11:00 - 22:00 น.</p>
+                </div>
+                
+                <div>
+                    <h4 class="text-xl font-bold text-white mb-4 border-b border-amber-500 pb-2">เมนูด่วน</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="{% url 'menu:home' %}" class="hover:text-amber-500 transition">หน้าแรก</a></li>
+                        <li><a href="{% url 'menu:home' %}#about" class="hover:text-amber-500 transition">เกี่ยวกับเรา</a></li>
+                        <li><a href="{% url 'menu:menu' %}" class="hover:text-amber-500 transition">เมนูอาหาร</a></li>
+                        <li><a href="{% url 'menu:table_status' %}" class="hover:text-amber-500 transition">สถานะโต๊ะ</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-xl font-bold text-white mb-4 border-b border-amber-500 pb-2">จอง & ติดต่อ</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="{% url 'menu:reservation' %}" class="hover:text-amber-500 transition">จองโต๊ะ / สั่งกลับบ้าน</a></li>
+                        <li><a href="{% url 'menu:gallery' %}" class="hover:text-amber-500 transition">แกลเลอรี</a></li>
+                        <li><a href="{% url 'menu:contact' %}" class="hover:text-amber-500 transition">ติดต่อเรา</a></li>
+                        <li><a href="/admin/" class="hover:text-red-500 transition text-gray-700 text-xs mt-2 block">Admin Login</a></li>
+                    </ul>
+                </div>
+
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 text-center text-gray-500 text-sm">
+                <p>&copy; 2025 ร้านอาหารไทย. สงวนลิขสิทธิ์.</p>
+                <p class="mt-1">Powered by Django & Tailwind CSS</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const button = document.getElementById('mobile-menu-button');
+            const menu = document.getElementById('mobile-menu');
+            const hamburger = document.getElementById('hamburger-icon');
+            const close = document.getElementById('close-icon');
+
+            button.addEventListener('click', function() {
+                // Toggle display of the menu
+                if (menu.style.display === 'block') {
+                    menu.style.display = 'none';
+                    hamburger.classList.remove('hidden');
+                    close.classList.add('hidden');
+                } else {
+                    menu.style.display = 'block';
+                    hamburger.classList.add('hidden');
+                    close.classList.remove('hidden');
+                }
+            });
+
+            // ปิดเมนูเมื่อคลิกที่ลิงก์ในเมนูมือถือ
+            const menuLinks = menu.querySelectorAll('a');
+            menuLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    menu.style.display = 'none';
+                    hamburger.classList.remove('hidden');
+                    close.classList.add('hidden');
+                });
+            });
+        });
+        
+        // หากคุณต้องการโค้ดใน {% static 'js/script.js' %} ให้คุณใส่โค้ดที่ต้องการในไฟล์นั้น
+    </script>
+</body>
+</html>
