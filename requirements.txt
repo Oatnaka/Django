@@ -5,3 +5,4 @@ Pillow
 jazzmin==3.0.0  # (ตัวอย่างเวอร์ชัน)
 python-decouple
 
+
