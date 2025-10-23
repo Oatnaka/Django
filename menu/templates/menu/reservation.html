@@ -3,92 +3,122 @@
 {% block title %}จองโต๊ะ / สั่งกลับบ้าน{% endblock %}
 
 {% block content %}
-    
-    <section class="relative py-32 md:py-48 bg-gray-900 overflow-hidden">
-        <div class="absolute inset-0">
-            <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHxzZWFmb29kJTIwZGlzaGVzfGVufDB8MXx8fDE3NjA3ODY1MzZ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" 
-                alt="Thai Food Platter" 
-                class="w-full h-full object-cover opacity-30">
-        </div>
-        
-        <div class="absolute inset-0 bg-black/50"></div> 
+    
+    <section class="relative py-32 md:py-48 bg-gray-900 overflow-hidden">
+        <div class="absolute inset-0">
+            <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHxzZWFmb29kJTIwZGlzaGVzfGVufDB8MXx8fDE3NjA3ODY1MzZ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" 
+                alt="Thai Food Platter" 
+                class="w-full h-full object-cover opacity-30">
+        </div>
+        
+        <div class="absolute inset-0 bg-black/50"></div> 
         <div class="relative max-w-7xl mx-auto px-4 text-center">
-            <h1 class="text-white text-5xl md:text-6xl font-extrabold mb-4 animate-fadeInUp">จองโต๊ะ / สั่งกลับบ้าน</h1>
-            <p class="text-xl md:text-2xl text-amber-300 max-w-3xl mx-auto font-light">
-                กรุณากรอกข้อมูลเพื่อจองโต๊ะล่วงหน้า หรือสั่งอาหารกลับบ้าน เราพร้อมเสิร์ฟความอร่อย 
-            </p>
-        </div>
-    </section>
-    
-    <section class="py-20 bg-gray-50">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="bg-white p-8 md:p-12 rounded-2xl shadow-2xl border border-gray-100 transform hover:shadow-3xl transition duration-500">
-                
-                <h2 class="text-4xl font-bold text-amber-700 mb-8 text-center border-b-2 border-amber-200 pb-3">แบบฟอร์มการจอง</h2>
-                
-                {% if tables_available is not None and max_tables is not None %}
-                <div class="bg-amber-50 border-l-4 border-amber-600 text-amber-900 p-4 mb-10 rounded-lg shadow-md">
-                    <p class="font-bold text-lg mb-1">สถานะโต๊ะว่างสำหรับวันนี้ ({{ current_date|date:"j M Y" }})</p>
-                    
-                    {% if tables_available > 0 %}
-                        <p class="text-3xl font-extrabold text-amber-800 flex items-center">
-                            <span class="text-green-500 mr-3">🟢</span> มีโต๊ะว่าง: {{ tables_available }} โต๊ะ 
-                            <span class="text-base font-normal text-amber-600 ml-2">(จากทั้งหมด {{ max_tables }} โต๊ะ)</span>
-                        </p>
-                    {% else %}
-                        <p class="text-3xl font-extrabold text-red-600 flex items-center">
-                            <span class="text-red-500 mr-3">🔴</span> โต๊ะเต็มแล้ว!
-                            <span class="text-base font-normal text-red-500 ml-2"> (โปรดพิจารณาสั่งกลับบ้าน)</span>
-                        </p>
-                    {% endif %}
-                </div>
-                {% endif %}
-                
-                {% if messages %}
-                    {% for message in messages %}
-                        <div class="p-4 mb-6 rounded-lg font-medium 
-                            {% if message.tags == 'success' %}
-                                bg-green-100 text-green-800 border border-green-300
-                            {% else %}
-                                bg-red-100 text-red-800 border border-red-300
-                            {% endif %}">
-                            {{ message }}
-                        </div>
-                    {% endfor %}
-                {% endif %}
-                
-                <form method="POST" class="space-y-6 pt-4">
-                    {% csrf_token %}
-                    
-                    {% for field in form %}
-                    
-                        {% if field.name == 'is_takeaway' %}
-                        
-                        <div class="flex items-center pt-4 pb-4">
-                            {{ field }}
-                            <label for="{{ field.id_for_label }}" class="ml-3 block text-lg font-semibold text-gray-800 cursor-pointer">{{ field.label }}</label>
-                        </div>
-                        <hr class="border-amber-300">
+            <h1 class="text-white text-5xl md:text-6xl font-extrabold mb-4 animate-fadeInUp">จองโต๊ะ / สั่งกลับบ้าน</h1>
+            <p class="text-xl md:text-2xl text-amber-300 max-w-3xl mx-auto font-light">
+                กรุณากรอกข้อมูลเพื่อจองโต๊ะล่วงหน้า หรือสั่งอาหารกลับบ้าน เราพร้อมเสิร์ฟความอร่อย 
+            </p>
+        </div>
+    </section>
+    
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white p-8 md:p-12 rounded-2xl shadow-2xl border border-gray-100 transform hover:shadow-3xl transition duration-500">
+                
+                <h2 class="text-4xl font-bold text-amber-700 mb-8 text-center border-b-2 border-amber-200 pb-3">แบบฟอร์มการจอง</h2>
+                
+                {% if tables_available is not None and max_tables is not None %}
+                <div class="bg-amber-50 border-l-4 border-amber-600 text-amber-900 p-4 mb-10 rounded-lg shadow-md">
+                    <p class="font-bold text-lg mb-1">สถานะโต๊ะว่างสำหรับวันนี้ ({{ current_date|date:"j M Y" }})</p>
+                    
+                    {% if tables_available > 0 %}
+                        <p class="text-3xl font-extrabold text-amber-800 flex items-center">
+                            <span class="text-green-500 mr-3">🟢</span> มีโต๊ะว่าง: {{ tables_available }} โต๊ะ 
+                            <span class="text-base font-normal text-amber-600 ml-2">(จากทั้งหมด {{ max_tables }} โต๊ะ)</span>
+                        </p>
+                    {% else %}
+                        <p class="text-3xl font-extrabold text-red-600 flex items-center">
+                            <span class="text-red-500 mr-3">🔴</span> โต๊ะเต็มแล้ว!
+                            <span class="text-base font-normal text-red-500 ml-2"> (โปรดพิจารณาสั่งกลับบ้าน)</span>
+                        </p>
+                    {% endif %}
+                </div>
+                {% endif %}
+                
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="p-4 mb-6 rounded-lg font-medium 
+                            {% if message.tags == 'success' %}
+                                bg-green-100 text-green-800 border border-green-300
+                            {% else %}
+                                bg-red-100 text-red-800 border border-red-300
+                            {% endif %}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                
+                <form method="POST" class="space-y-6 pt-4">
+                    {% csrf_token %}
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {# Name, Phone, Email fields #}
+                        <div>
+                            <label for="{{ form.name.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">{{ form.name.label }}</label>
+                            {{ form.name }}
+                            {% if form.name.errors %}<p class="text-red-500 text-sm mt-1 font-medium">{{ form.name.errors.as_text }}</p>{% endif %}
+                        </div>
+                        <div>
+                            <label for="{{ form.phone.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">{{ form.phone.label }}</label>
+                            {{ form.phone }}
+                            {% if form.phone.errors %}<p class="text-red-500 text-sm mt-1 font-medium">{{ form.phone.errors.as_text }}</p>{% endif %}
+                        </div>
+                        <div>
+                            <label for="{{ form.email.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">{{ form.email.label }}</label>
+                            {{ form.email }}
+                            {% if form.email.errors %}<p class="text-red-500 text-sm mt-1 font-medium">{{ form.email.errors.as_text }}</p>{% endif %}
+                        </div>
+                        
+                        {# Date and Time fields #}
+                        <div>
+                            <label for="{{ form.date.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">{{ form.date.label }}</label>
+                            {{ form.date }}
+                            {% if form.date.errors %}<p class="text-red-500 text-sm mt-1 font-medium">{{ form.date.errors.as_text }}</p>{% endif %}
+                        </div>
+                        <div>
+                            <label for="{{ form.time.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">{{ form.time.label }}</label>
+                            {{ form.time }}
+                            {% if form.time.errors %}<p class="text-red-500 text-sm mt-1 font-medium">{{ form.time.errors.as_text }}</p>{% endif %}
+                        </div>
+                    </div>
 
-                        {% else %}
-                        <div class="form-group">
-                            <label for="{{ field.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">{{ field.label }}</label>
-                            
-                            {{ field }}
-                            
-                            {% if field.errors %}<p class="text-red-500 text-sm mt-1 font-medium">{{ field.errors.as_text }}</p>{% endif %}
-                        </div>
-                        {% endif %}
-                        
-                    {% endfor %}
+                    {# Party Size field (always full width) #}
+                    <div class="mt-6">
+                        <label for="{{ form.party_size.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">{{ form.party_size.label }}</label>
+                        {{ form.party_size }}
+                        {% if form.party_size.errors %}<p class="text-red-500 text-sm mt-1 font-medium">{{ form.party_size.errors.as_text }}</p>{% endif %}
+                    </div>
 
-                    <button type="submit" class="w-full bg-amber-600 hover:bg-amber-700 text-white font-extrabold text-lg py-3 px-4 rounded-xl transition duration-300 shadow-lg hover:shadow-xl transform hover:scale-[1.01]">
-                        ยืนยันการจอง/สั่ง
-                    </button>
-                </form>
+                    {# Special Requests field (always full width) #}
+                    <div class="mt-6">
+                        <label for="{{ form.special_requests.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">{{ form.special_requests.label }}</label>
+                        {{ form.special_requests }}
+                        {% if form.special_requests.errors %}<p class="text-red-500 text-sm mt-1 font-medium">{{ form.special_requests.errors.as_text }}</p>{% endif %}
+                    </div>
+                    
+                    {# Takeaway Checkbox #}
+                    <div class="flex items-center pt-4 pb-4 mt-6">
+                        {{ form.is_takeaway }}
+                        <label for="{{ form.is_takeaway.id_for_label }}" class="ml-3 block text-lg font-semibold text-gray-800 cursor-pointer">{{ form.is_takeaway.label }}</label>
+                    </div>
+                    <hr class="border-amber-300">
 
-            </div>
-        </div>
-    </section>
-    
+                    <button type="submit" class="w-full bg-amber-600 hover:bg-amber-700 text-white font-extrabold text-lg py-3 px-4 rounded-xl transition duration-300 shadow-lg hover:shadow-xl transform hover:scale-[1.01]">
+                        ยืนยันการจอง/สั่ง
+                    </button>
+                </form>
+
+            </div>
+        </div>
+    </section>
+    
 {% endblock content %}
