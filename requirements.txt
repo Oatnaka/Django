@@ -2,5 +2,6 @@ Django
 gunicorn
 line-bot-sdk
 Pillow
-jazzmin
+jazzmin==3.0.0  # (ตัวอย่างเวอร์ชัน)
 python-decouple
+
